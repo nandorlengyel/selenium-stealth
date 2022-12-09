@@ -1,5 +1,5 @@
 from selenium.webdriver import Chrome as Driver
-from utils import send
+from .utils import send
 
 
 def user_agent_override(

@@ -1,7 +1,7 @@
 from selenium.webdriver import Chrome as Driver
 from typing import Any
 import json
-from utils import send
+from .utils import send
 
 
 def evaluationString(fun: str, *args: Any) -> str:
