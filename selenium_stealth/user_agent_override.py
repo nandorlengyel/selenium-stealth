@@ -1,4 +1,5 @@
 from selenium.webdriver import Chrome as Driver
+from utils import send
 
 
 def user_agent_override(
@@ -9,7 +10,7 @@ def user_agent_override(
         **kwargs
 ) -> None:
     if user_agent is None:
-        ua = driver.execute_cdp_cmd("Browser.getVersion", {})['userAgent']
+        ua = send(driver, "Browser.getVersion")['userAgent']
     else:
         ua = user_agent
     ua = ua.replace("HeadlessChrome", "Chrome")  # hide headless nature
@@ -23,4 +24,4 @@ def user_agent_override(
     else:
         override = {"userAgent": ua}
 
-    driver.execute_cdp_cmd('Network.setUserAgentOverride', override)
+    send(driver, "Emulation.setNavigatorOverrides", override)
